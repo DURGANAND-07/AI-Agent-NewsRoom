@@ -1,0 +1,269 @@
+/* Base Styles & Dark Theme */
+body {
+    background-color: #121212;
+    color: #E2E8F0;
+    overflow-x: hidden;
+}
+
+/* --- Fix Anchor Scrolling Behind Fixed Navbar --- */
+#problem, 
+#how-it-works, 
+#preview, 
+#subscribe, 
+#contribute {
+    scroll-margin-top: 120px;
+}
+
+
+
+/* Subtle Dark Grid Pattern */
+.bg-grid-pattern {
+    background-size: 50px 50px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-position: center top;
+}
+
+/* --- Tech/Robotics Background Graphics --- */
+.scan-line-horizontal {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(66,133,244,0.4), transparent);
+    animation: scan-v 8s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+@keyframes scan-v {
+    0% { top: -10%; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { top: 110%; opacity: 0; }
+}
+
+.tech-node {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #4285F4;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px #4285F4;
+    animation: float 5s ease-in-out infinite alternate;
+}
+
+.tech-ring {
+    position: absolute;
+    border: 2px dashed rgba(66, 133, 244, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.neural-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.2), transparent);
+    height: 1px;
+    width: 200px;
+    transform: rotate(-45deg);
+    pointer-events: none;
+}
+
+/* Glow Effects */
+.blue-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(66, 133, 244, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Premium Glassmorphism */
+.glass {
+    background: rgba(26, 26, 29, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Dark Blue Blur Animated Buttons --- */
+.btn-glass-blue {
+    background: rgba(10, 25, 47, 0.7); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(66, 133, 244, 0.4);
+    box-shadow: 0 0 15px rgba(66, 133, 244, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+.btn-glass-blue::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: skewX(-20deg);
+    transition: all 0.7s ease;
+}
+.btn-glass-blue:hover {
+    background: rgba(15, 35, 70, 0.85);
+    border-color: rgba(66, 133, 244, 0.8);
+    box-shadow: 0 0 25px rgba(66, 133, 244, 0.6);
+    transform: translateY(-3px) scale(1.02);
+}
+.btn-glass-blue:hover::before {
+    left: 200%;
+}
+
+/* --- "Framer Motion" Style Scroll Animations --- */
+.motion-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-scale {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.motion-show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Staggered Delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Text Gradients */
+.text-gradient {
+    background: linear-gradient(135deg, #FFFFFF, #4285F4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Terminal Typing Cursor */
+
+.type-cursor {
+    display: inline-block;
+    width: 4px;
+   
+    background-color: #4285F4;
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+}
+
+/* --- NEW LOGO CSS EXTRACTION --- */
+.logo-icon-only {
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    background-color: transparent;
+}
+.logo-icon-only img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Interactive Tilt Card */
+.tilt-card {
+    transition: transform 0.1s ease, box-shadow 0.1s ease, border-color 0.3s ease;
+    transform-style: preserve-3d;
+}
+.tilt-card:hover {
+    border-color: rgba(66, 133, 244, 0.4);
+}
+
+/* Chart Container Requirements */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    max-height: 400px;
+}
+@media (min-width: 768px) {
+    .chart-container { height: 350px; }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* --- Mobile Specific Additions --- */
+
+/* Wrapper to fix mobile page jump (reflow) during typing */
+.typewriter-wrapper {
+    /* Fixed height ensures the box doesn't shrink/grow while text loops */
+    min-height: 160px;
+    width: 100%;
+}
+
+/* Circular 'Q' Toggle Button */
+.mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(66, 133, 244, 0.15);
+    border: 1px solid rgba(66, 133, 244, 0.3);
+    transition: all 0.3s ease;
+    margin-left: auto; /* Pushes it to the rightmost edge */
+    order: 2; /* Ensures it stays to the right of the logo */
+}
+.mobile-toggle:active {
+    transform: scale(0.9);
+}
+
+/* Mobile Nav Dropdown (Glass Transparent Overlay) */
+.mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 11, 16, 0.85); /* Deep translucent overlay */
+    backdrop-filter: blur(25px); /* Heavy blur for glass effect */
+    -webkit-backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 0 16px 16px; 
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0;
+    gap: 2rem;
+    
+    /* Animation hidden states */
+    transform: translateY(-20%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
