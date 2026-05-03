@@ -23,8 +23,6 @@ const mobileMenu = document.getElementById("mobile-menu");
 if (mobileToggle) {
     mobileToggle.addEventListener("click", () => {
         mobileMenu.classList.toggle("active");
-        
-        // Swap text for 'X' icon during dropdown
         if (mobileMenu.classList.contains("active")) {
             mobileToggle.innerHTML = '<i class="fa-solid fa-xmark text-[20px]"></i>';
         } else {
@@ -33,10 +31,8 @@ if (mobileToggle) {
     });
 }
 
-// Function to handle clicking links in mobile menu
 window.scrollToSection = function(id) {
     document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-    // Close the menu automatically
     if (mobileMenu.classList.contains("active")) {
         mobileMenu.classList.remove("active");
         mobileToggle.textContent = 'Q';
@@ -68,20 +64,17 @@ const heroWords = ["Tech Intelligence.", "AI Orchestration.", "Agentic Workflows
 let heroWordIndex = 0;
 let heroCharIndex = 0;
 let isDeleting = false;
-let isHeroTypingPaused = false; // Flag to pause typing off-screen
+let isHeroTypingPaused = false; 
 
 const typeContainer = document.getElementById("typewriter-text");
 const subText = document.getElementById("typewriter-sub");
 
 function typeWriterLoop() {
-    // If scrolled out of view, pause loop to save resources & prevent reflow bugs
     if (isHeroTypingPaused) {
         setTimeout(typeWriterLoop, 500);
         return;
     }
-
     const currentWord = heroWords[heroWordIndex];
-    
     if (isDeleting) {
         typeContainer.innerHTML = currentWord.substring(0, heroCharIndex - 1);
         heroCharIndex--;
@@ -103,11 +96,9 @@ function typeWriterLoop() {
         heroWordIndex = (heroWordIndex + 1) % heroWords.length;
         typeSpeed = 500; 
     }
-
     setTimeout(typeWriterLoop, typeSpeed);
 }
 
-// Observer to pause Hero typing when out of view
 const heroSection = document.querySelector('.hero');
 if (heroSection) {
     const heroObserver = new IntersectionObserver((entries) => {
@@ -117,8 +108,6 @@ if (heroSection) {
     }, { threshold: 0.1 });
     heroObserver.observe(heroSection);
 }
-
-// Start hero typing loop
 setTimeout(typeWriterLoop, 600);
 
 // 6. Scroll-Triggered Typing Effect for Problem Section
@@ -148,13 +137,10 @@ window.handleTilt = function(e, el) {
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
     const rotateX = ((y - centerY) / centerY) * -4;
     const rotateY = ((x - centerX) / centerX) * 4;
-    
     el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
 }
 
@@ -162,7 +148,6 @@ window.resetTilt = function(el) {
     el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
 }
 
-// Trigger initial animations
 setTimeout(() => {
     document.querySelectorAll('.motion-hidden, .motion-scale').forEach((el) => {
         const rect = el.getBoundingClientRect();
@@ -176,9 +161,7 @@ setTimeout(() => {
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('performanceChart');
     if (!canvas) return;
-    
     const ctx = canvas.getContext('2d');
-    
     Chart.defaults.color = '#94a3b8';
     Chart.defaults.font.family = "'Inter', sans-serif";
     
@@ -188,14 +171,8 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 label: 'Time Spent (Minutes)',
                 data: [120, 2],
-                backgroundColor: [
-                    'rgba(255, 255, 255, 0.1)', 
-                    'rgba(66, 133, 244, 0.9)'   
-                ],
-                borderColor: [
-                    'rgba(255, 255, 255, 0.2)',
-                    'rgb(66, 133, 244)'
-                ],
+                backgroundColor: ['rgba(255, 255, 255, 0.1)', 'rgba(66, 133, 244, 0.9)'],
+                borderColor: ['rgba(255, 255, 255, 0.2)', 'rgb(66, 133, 244)'],
                 borderWidth: 1,
                 borderRadius: 6,
                 barPercentage: 0.6
@@ -221,25 +198,170 @@ document.addEventListener('DOMContentLoaded', function() {
                     cornerRadius: 8,
                     displayColors: false,
                     callbacks: {
-                        label: function(context) {
-                            return context.parsed.y + ' mins daily';
-                        }
+                        label: function(context) { return context.parsed.y + ' mins daily'; }
                     }
                 }
             },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
-                    ticks: { font: { size: 12 } }
-                },
-                x: {
-                    grid: { display: false, drawBorder: false },
-                    ticks: { font: { weight: '500', size: 14, family: "'Fira Code', monospace" }, color: '#e2e8f0' }
-                }
+                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false }, ticks: { font: { size: 12 } } },
+                x: { grid: { display: false, drawBorder: false }, ticks: { font: { weight: '500', size: 14, family: "'Fira Code', monospace" }, color: '#e2e8f0' } }
             }
         }
     };
-
     new Chart(ctx, config);
 });
+
+// 9. Main n8n Webhook Form Submission
+const subscribeForm = document.getElementById('n8n-subscribe-form');
+if (subscribeForm) {
+    subscribeForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const name = document.getElementById('subscriber-name').value;
+        const email = document.getElementById('subscriber-email').value;
+        const interest = document.getElementById('subscriber-interest').value; 
+        const wantsUpdates = document.getElementById('subscriber-updates').checked; 
+        
+        const btn = document.getElementById('subscribe-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnIcon = document.getElementById('btn-icon');
+        const statusText = document.getElementById('form-status');
+        
+        // --- REPLACE WITH YOUR PikaPods n8n PRODUCTION WEBHOOK URL ---
+        const webhookUrl = "https://overjoyed-nightingale.pikapod.net/webhook/register"; 
+        
+        btn.disabled = true;
+        btn.classList.add('opacity-70', 'cursor-not-allowed');
+        btnText.textContent = "Authenticating...";
+        btnIcon.className = "fa-solid fa-circle-notch fa-spin text-sm";
+        statusText.classList.add('hidden');
+        
+        try {
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    name: name, 
+                    email: email, 
+                    interest: interest,
+                    wantsUpdates: wantsUpdates 
+                }) 
+            });
+            
+            if (response.ok) {
+                btnText.textContent = "Access Granted";
+                btnIcon.className = "fa-solid fa-check text-sm";
+                btn.classList.remove('btn-glass-blue');
+                btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
+                
+                statusText.textContent = "Success! Check your inbox for the welcome transmission.";
+                statusText.className = "text-sm font-mono text-center mt-3 text-green-400 block animate-pulse";
+                
+                subscribeForm.reset(); 
+            } else {
+                throw new Error('Server rejected request');
+            }
+        } catch (error) {
+            btn.disabled = false;
+            btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            btnText.textContent = "Connection Failed - Try Again";
+            btnIcon.className = "fa-solid fa-triangle-exclamation text-sm";
+            statusText.textContent = "Error communicating with server. Please try again.";
+            statusText.className = "text-sm font-mono text-center mt-3 text-red-400 block";
+        }
+    });
+}
+
+// 10. Modal Logic & n8n Webhook Revoke Form Submission
+const revokeModal = document.getElementById('revoke-modal');
+const revokeModalContent = document.getElementById('revoke-modal-content');
+const openRevokeBtn = document.getElementById('open-revoke-modal');
+const closeRevokeBtn = document.getElementById('close-revoke-modal');
+const revokeForm = document.getElementById('n8n-revoke-form');
+
+// Handle Modal Open/Close
+if (openRevokeBtn && revokeModal && closeRevokeBtn) {
+    openRevokeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        revokeModal.classList.remove('opacity-0', 'pointer-events-none');
+        revokeModalContent.classList.remove('scale-95');
+        revokeModalContent.classList.add('scale-100');
+    });
+
+    closeRevokeBtn.addEventListener('click', () => {
+        revokeModal.classList.add('opacity-0', 'pointer-events-none');
+        revokeModalContent.classList.remove('scale-100');
+        revokeModalContent.classList.add('scale-95');
+    });
+    
+    // Close modal if user clicks outside the box
+    revokeModal.addEventListener('click', (e) => {
+        if (e.target === revokeModal) {
+            closeRevokeBtn.click();
+        }
+    });
+}
+
+// Handle Revoke Form Submission
+if (revokeForm) {
+    revokeForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const name = document.getElementById('revoke-name').value;
+        const email = document.getElementById('revoke-email').value;
+        const reason = document.getElementById('revoke-reason').value;
+        
+        const btn = document.getElementById('revoke-btn');
+        const btnText = document.getElementById('revoke-btn-text');
+        const btnIcon = document.getElementById('revoke-btn-icon');
+        const statusText = document.getElementById('revoke-form-status');
+        
+        // --- REPLACE WITH YOUR SECOND n8n WEBHOOK URL (For the Deletion Workflow) ---
+        const revokeWebhookUrl = "YOUR_REVOKE_WEBHOOK_URL_HERE"; 
+        
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+        btnText.textContent = "Processing...";
+        btnIcon.className = "fa-solid fa-circle-notch fa-spin text-xs";
+        statusText.classList.add('hidden');
+        
+        try {
+            const response = await fetch(revokeWebhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, reason: reason }) 
+            });
+            
+            if (response.ok) {
+                btnText.textContent = "Wipe Executed";
+                btnIcon.className = "fa-solid fa-check text-xs";
+                
+                statusText.textContent = "Data queued for deletion. Closing terminal...";
+                statusText.className = "text-xs font-mono text-center mt-3 text-red-400 block animate-pulse";
+                
+                revokeForm.reset(); 
+                
+                // Auto close modal after success
+                setTimeout(() => {
+                    closeRevokeBtn.click();
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    btnText.textContent = "Execute Data Wipe";
+                    btnIcon.className = "fa-solid fa-skull text-xs";
+                    statusText.classList.add('hidden');
+                }, 3000);
+                
+            } else {
+                throw new Error('Server rejected request');
+            }
+        } catch (error) {
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+            btnText.textContent = "Failed - Try Again";
+            btnIcon.className = "fa-solid fa-triangle-exclamation text-xs";
+            
+            statusText.textContent = "Error connecting to servers.";
+            statusText.className = "text-xs font-mono text-center mt-3 text-red-400 block";
+        }
+    });
+}
