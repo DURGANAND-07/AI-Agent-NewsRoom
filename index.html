@@ -129,10 +129,6 @@
         </div>
     </nav>
 
-
-
-
-
     <section class="relative pt-32 pb-16 md:pt-48 md:pb-32 z-10 hero">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             
@@ -169,11 +165,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
 
     <section id="problem" class="py-16 md:py-24 relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -379,24 +370,67 @@
         </div>
     </section>
 
+    <!-- UPDATED SUBSCRIBE SECTION (CENTERED, NO TALLY) -->
     <section class="py-16 md:py-24 relative z-10 border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div id="subscribe" class="motion-hidden delay-100 flex flex-col h-full">
+            <div class="flex flex-col items-center justify-center max-w-3xl mx-auto w-full">
+                
+                <div id="subscribe" class="motion-hidden delay-100 flex flex-col h-full items-center text-center w-full">
                     <h2 class="font-display text-3xl font-bold text-white mb-4">Secure Your Slot</h2>
-                    <p class="text-gray-400 mb-8">Join the beta to receive the 9:00 AM payload directly to your inbox. Stay ahead of the curve.</p>
-                    <div class="w-full relative transition-all duration-300">
-                        <iframe data-tally-src="https://tally.so/embed/681OqA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="250" frameborder="0" marginheight="0" marginwidth="0" title="Quatidian AI | Agent NewsRoom Beta" class="relative z-10 w-full transition-all duration-300 overflow-hidden"></iframe>
+                    <p class="text-gray-400 mb-8 max-w-md mx-auto">Join the newsRoom to receive the 9:00 AM payload directly to your inbox. Stay ahead of the curve.</p>
+                    
+                    <!-- The Form Container -->
+                    <div class="w-full max-w-md mx-auto relative transition-all duration-300 glass p-6 md:p-8 rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                        <form id="n8n-subscribe-form" class="flex flex-col gap-4 text-left">
+                            <div>
+                                <input type="text" id="subscriber-name" placeholder="Your Name" required
+                                    class="w-full bg-surfaceDark/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-googleBlue focus:ring-1 focus:ring-googleBlue transition-all font-sans">
+                            </div>
+                            <div>
+                                <input type="email" id="subscriber-email" placeholder="Your Email Address" required
+                                    class="w-full bg-surfaceDark/60 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-googleBlue focus:ring-1 focus:ring-googleBlue transition-all font-sans">
+                            </div>
+                            
+                            <!-- Dropdown Input -->
+                            <div class="relative">
+                                <select id="subscriber-interest" required
+                                    class="w-full bg-surfaceDark/60 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-googleBlue focus:ring-1 focus:ring-googleBlue transition-all font-sans appearance-none cursor-pointer">
+                                    <option value="" disabled selected class="text-gray-500">Select an Option</option>
+                                    <option value="Technology" class="bg-[#121212] text-white">Technology</option>
+                                    <option value="Wait for V.2.0" class="bg-[#121212] text-white">Wait for V.2.0</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                                    <i class="fa-solid fa-chevron-down text-gray-500 text-sm"></i>
+                                </div>
+                            </div>
+
+                            <!-- MANDATORY Consent Checkbox -->
+                            <div class="flex items-start gap-3 mt-1 mb-1 relative group">
+                                <div class="flex items-center h-5">
+                                    <input type="checkbox" id="subscriber-updates" required class="w-4 h-4 rounded border-white/20 bg-surfaceDark/60 accent-[#4285F4] cursor-pointer mt-0.5 transition-all">
+                                </div>
+                                <label for="subscriber-updates" class="text-xs text-gray-400 cursor-pointer text-left leading-relaxed">
+                                    Send me updates about future product launches and beta tools from Quatidian AI. <span class="text-red-500 font-bold ml-1">*</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" id="subscribe-btn" class="btn-glass-blue text-white font-semibold py-3.5 px-6 rounded-xl mt-2 flex justify-center items-center gap-2 group">
+                                <span id="btn-text">Join the NewsRoom</span>
+                                <i id="btn-icon" class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <p id="form-status" class="text-sm font-mono text-center mt-2 hidden"></p>
+                        </form>
+                    </div>
+
+                    <!-- Privacy Info Below Form -->
+                    <div class="mt-8 text-xs text-gray-400 text-center max-w-md mx-auto leading-relaxed font-mono glass px-5 py-4 rounded-xl border border-white/5">
+                        <div class="text-googleBlue mb-1.5 font-semibold text-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-shield-halved"></i> Strict Privacy Policy
+                        </div>
+                        Your email is used exclusively for delivering the news payload. We will <strong>never</strong> sell, rent, or share your data with any third party. You retain full control and can opt out at any time.
                     </div>
                 </div>
 
-                <!--<div id="contribute" class="motion-hidden delay-200 flex flex-col h-full">
-                    <h2 class="font-display text-3xl font-bold text-white mb-4">Support Independent AI.</h2>
-                    <p class="text-gray-400 mb-8">We run on a 0-cost operational stack. Help us fund our Cloud servers to keep this running forever.</p>
-                    <div class="w-full relative transition-all duration-300">
-                        <iframe data-tally-src="https://tally.so/embed/ob07j5?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="250" frameborder="0" marginheight="0" marginwidth="0" title="Support Truly Matters." class="relative z-10 w-full transition-all duration-300 overflow-hidden"></iframe>
-                    </div>
-                </div> -->
             </div> 
         </div>
     </section>
@@ -405,12 +439,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-12">
                 <div class="col-span-1 md:col-span-6 lg:col-span-5">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="logo-icon-only w-8 h-8">
-                            <img src="cropped_circle_image.png" alt="Q Icon">
-                        </div>
-                        <span class="text-white font-logo text-xl tracking-tight">Quatidian AI</span>
-                    </div>
+                    <!-- UPDATED: Stacked Footer Logo with Link -->
+<a href="https://quatidianai.netlify.app" target="_blank" class="inline-flex items-center gap-3.5 mb-6 group cursor-pointer">
+    <!-- Icon Container with subtle ring matching the image -->
+    <div class="w-11 h-11 rounded-full border border-white/10 bg-[#0a0a0c] flex items-center justify-center overflow-hidden group-hover:border-googleBlue/50 transition-colors shadow-lg">
+        <img src="cropped_circle_image.png" alt="Q Icon" class="w-full h-full object-contain p-0.5">
+    </div>
+    <!-- Stacked Text Container -->
+    <div class="flex flex-col justify-center text-left">
+        <span class="text-white font-logo text-[22px] tracking-wide leading-none transition-colors">Quatidian AI</span>
+        <span class="text-googleBlue font-sans text-[11px] font-bold tracking-[0.25em] uppercase mt-1.5 leading-none">Agents</span>
+    </div>
+</a>
                     <p class="text-gray-400 text-sm leading-relaxed mb-4">
                         Built by <span class="text-white font-medium">Durganand Sah (DN)</span>. I'm a developer passionate about AI orchestration, automation, and solving real-world problems with code. agent NewsRoom is my initiative to cure information overload in the tech community.
                     </p>
@@ -432,15 +472,54 @@
             <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div class="text-gray-500 text-sm font-mono text-center md:text-left leading-relaxed">
                     &copy; <span id="year"></span> Quatidian AI. All rights reserved.<br>
-                    This product is owned by <a href="https://quatidianai.netlify.app/#" class="text-googleBlue hover:text-white transition-colors underline decoration-googleBlue/30 hover:decoration-white">Quatidian AI Agent Platform</a>. - visit to read 
-                    policy & Terms.
+                    This product is owned by <a href="https://quatidianai.netlify.app/#" target="_blank" class="text-googleBlue hover:text-white transition-colors underline decoration-googleBlue/30 hover:decoration-white">Quatidian AI Agent Platform</a>. 
+                    <br>
+                    <!-- NEW: Subtle Hidden Trigger Link -->
+                    <a href="#" id="open-revoke-modal" class="text-[10px] text-surfaceBorder hover:text-red-900/50 transition-colors mt-2 inline-block uppercase tracking-widest cursor-pointer">Data Revocation</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-    
+    <!-- SLICK HIDDEN REVOKE MODAL -->
+    <div id="revoke-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-[#050505]/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass p-8 rounded-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] w-full max-w-md relative transform transition-transform duration-300 scale-95 mx-4" id="revoke-modal-content">
+            
+            <!-- Close Button (X) -->
+            <button id="close-revoke-modal" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6 mt-2">
+                <h3 class="font-display text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-red-500 text-sm"></i> Connection Sever
+                </h3>
+                <p class="text-xs text-gray-400">Initiate irreversible data wipe from NewsRoom servers.</p>
+            </div>
+            
+            <form id="n8n-revoke-form" class="flex flex-col gap-4 text-left">
+                <div>
+                    <input type="text" id="revoke-name" placeholder="Registered Name *" required
+                        class="w-full bg-surfaceDark/80 border border-white/5 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all font-sans">
+                </div>
+                <div>
+                    <input type="email" id="revoke-email" placeholder="Registered Email *" required
+                        class="w-full bg-surfaceDark/80 border border-white/5 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all font-sans">
+                </div>
+                <div>
+                    <textarea id="revoke-reason" placeholder="Reason for severing connection? (Min. 10 chars) *" required minlength="10" rows="3"
+                        class="w-full bg-surfaceDark/80 border border-white/5 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-red-500/50 focus:ring-1 focus:ring-red-500/50 transition-all font-sans resize-none custom-scrollbar"></textarea>
+                </div>
+                
+                <button type="submit" id="revoke-btn" class="w-full bg-red-500/10 border border-red-500/30 hover:bg-red-500/20 hover:border-red-500/60 text-red-400 font-medium py-3.5 px-6 rounded-xl mt-2 flex justify-center items-center gap-2 group transition-all">
+                    <span id="revoke-btn-text">Execute Data Wipe</span>
+                    <i id="revoke-btn-icon" class="fa-solid fa-skull text-xs group-hover:scale-110 transition-transform"></i>
+                </button>
+                <p id="revoke-form-status" class="text-xs font-mono text-center mt-2 hidden"></p>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
