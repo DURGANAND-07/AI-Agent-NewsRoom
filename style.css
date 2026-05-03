@@ -9,10 +9,13 @@ body {
 #problem, 
 #how-it-works, 
 #preview, 
-#subscribe, 
 #contribute {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 50px;
 }
+    #subscribe {
+    scroll-margin-top: 120px; 
+}
+
 
 
 
@@ -265,5 +268,7 @@ body {
 .mobile-menu.active {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
+}
     visibility: visible;
 }
