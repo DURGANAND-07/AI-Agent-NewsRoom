@@ -262,7 +262,7 @@ if (trapField !== "") {
                 btn.classList.remove('btn-glass-blue');
                 btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
                 
-                statusText.textContent = "Success! Check your inbox for the welcome transmission.";
+                statusText.textContent = "Success! Check your inbox verification.";
                 statusText.className = "text-sm font-mono text-center mt-3 text-green-400 block animate-pulse";
                 
                 subscribeForm.reset(); 
