@@ -234,7 +234,16 @@ if (subscribeForm) {
         btnText.textContent = "Authenticating...";
         btnIcon.className = "fa-solid fa-circle-notch fa-spin text-sm";
         statusText.classList.add('hidden');
-        
+        // Honeypot Check
+const trapField = document.getElementById('bot-trap').value;
+if (trapField !== "") {
+    // It's a bot! Silently reject them without hitting your n8n server.
+    console.log("Bot detected. Silently dropping request.");
+    btn.disabled = false;
+    btn.classList.remove('opacity-70', 'cursor-not-allowed');
+    btnText.textContent = "Access Granted"; // Fake success message to fool the bot
+    return; 
+}
         try {
             const response = await fetch(webhookUrl, {
                 method: 'POST',
