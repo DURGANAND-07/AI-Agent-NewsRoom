@@ -241,7 +241,7 @@ if (trapField !== "") {
     console.log("Bot detected. Silently dropping request.");
     btn.disabled = false;
     btn.classList.remove('opacity-70', 'cursor-not-allowed');
-    btnText.textContent = "Access Granted"; // Fake success message to fool the bot
+    btnText.textContent = "Verify Your Email"; // Fake success message to fool the bot
     return; 
 }
         try {
@@ -257,12 +257,12 @@ if (trapField !== "") {
             });
             
             if (response.ok) {
-                btnText.textContent = "Access Granted";
+                btnText.textContent = "Verify Your Email";
                 btnIcon.className = "fa-solid fa-check text-sm";
                 btn.classList.remove('btn-glass-blue');
                 btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
                 
-                statusText.textContent = "Success! Check your inbox for verification.";
+                statusText.textContent = "Don't be a Pending User!, Check your inbox for verification.";
                 statusText.className = "text-sm font-mono text-center mt-3 text-green-400 block animate-pulse";
                 
                 subscribeForm.reset(); 
