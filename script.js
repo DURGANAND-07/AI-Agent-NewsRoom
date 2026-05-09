@@ -255,8 +255,31 @@ if (trapField !== "") {
                     wantsUpdates: wantsUpdates 
                 }) 
             });
+
+
+if (response.ok) {
+    // Change text to clearly state the next action
+    btnText.textContent = "Check Your Inbox"; 
+    
+    // Stop the spinner. Change the icon to a static envelope or checkmark
+    // Assuming you are using FontAwesome based on your previous code
+    btnIcon.className = "fa-solid fa-envelope text-sm"; 
+    
+    btn.classList.remove('btn-glass-blue', 'opacity-70', 'cursor-not-allowed');
+    btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
+
+    statusText.textContent = "Don't be a Pending User! Check your inbox for the verification link.";
+    statusText.className = "text-sm font-mono text-center mt-3 text-red-400 block animate-pulse";
+    
+    subscribeForm.reset();
+}
+
+
+
+
             
-            if (response.ok) {
+            
+           /* if (response.ok) {
                 btnText.textContent = "Verify Your Email";
                 //btnIcon.className = "fa-solid fa-check text-sm";
                 btn.classList.remove('btn-glass-blue');
@@ -266,7 +289,7 @@ if (trapField !== "") {
                 statusText.className = "text-sm font-mono text-center mt-3 text-red-400 block animate-pulse";
                 
                 subscribeForm.reset(); 
-            } else {
+            }*/ else {
                 throw new Error('Server rejected request');
             }
         } catch (error) {
