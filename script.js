@@ -269,28 +269,13 @@ if (response.ok) {
     btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
 
     statusText.textContent = "Don't be a Pending User! Check your inbox for the verification link.";
-    statusText.className = "text-sm font-mono text-center mt-3 text-red-400 block animate-pulse";
+    statusText.className = "text-sm font-mono text-center mt-3 text-orange-400 block animate-pulse";
     
     subscribeForm.reset();
 }
 
-
-
-
-            
-            
-           /* if (response.ok) {
-                btnText.textContent = "Verify Your Email";
-                //btnIcon.className = "fa-solid fa-check text-sm";
-                btn.classList.remove('btn-glass-blue');
-                btn.classList.add('bg-green-500/20', 'border-green-500/40', 'text-green-400');
-                
-                statusText.textContent = "Don't be a Pending User!, Check your inbox for verification.";
-                statusText.className = "text-sm font-mono text-center mt-3 text-red-400 block animate-pulse";
-                
-                subscribeForm.reset(); 
-            }*/ else {
-                throw new Error('Server rejected request');
+else {
+     throw new Error('Server rejected request');
             }
         } catch (error) {
             btn.disabled = false;
