@@ -228,7 +228,7 @@ if (subscribeForm) {
         const statusText = document.getElementById('form-status');
         
         // --- REPLACE WITH YOUR PikaPods n8n PRODUCTION WEBHOOK URL ---
-        const webhookUrl ="https://overjoyed-nightingale.pikapod.net/webhook/register"; 
+        const webhookUrl ="https://miniproject.app.n8n.cloud/webhook/register "; 
         btn.disabled = true;
         btn.classList.add('opacity-70', 'cursor-not-allowed');
         btnText.textContent = "Authenticating...";
